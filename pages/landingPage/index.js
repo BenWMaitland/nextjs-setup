@@ -24,7 +24,7 @@ export default function LandingPage() {
 
     const router = useRouter();
     const { locale } = router;
-    const { t } = useTranslation('landingpage');
+    const { t } = useTranslation('landingPage');
 
     useEffect(() => {
         exampleDispatch({ type: "SET_DISPLAY_TEXT", payload: "Updated Value" }); // dispatcher for updating global state
@@ -75,6 +75,6 @@ export default function LandingPage() {
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
-        ...await serverSideTranslations(locale, ['landingpage']), // page must wait for this translation file to load
+        ...await serverSideTranslations(locale, ['landingPage']), // page must wait for this translation file to load
     },
 })

@@ -1,10 +1,6 @@
-import {
-    SET_USER,
-} from "../actionTypes";
-
 const auth = (state, action) => {
     switch (action.type) {
-        case SET_USER:
+        case "SET_USER":
             return {
                 ...state,
                 user: action.payload,
