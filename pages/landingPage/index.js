@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next' // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'  // i18n
 import { useRouter } from 'next/router'; // i18n
 import Link from 'next/link' // nextjs
+import API from "../../api";
 
 const useStyles = makeStyles((theme) => ({ // set styles through classes
     landingPageContainer: {
@@ -28,6 +29,17 @@ export default function LandingPage() {
     useEffect(() => {
         exampleDispatch({ type: "SET_DISPLAY_TEXT", payload: "Updated Value" }); // dispatcher for updating global state
     }, [])
+
+    // useEffect(() => {
+    //     API().get(`/PATHNAME`) // example .get
+    //         .then((response) => {
+    //             if (response.data) {
+    //                 console.log("response.data: ", response.data);
+    //             }
+    //         }).catch((e) => {
+    //             console.log("Error: ", e);
+    //         });
+    // }, [])
 
     return (
         <div className={classes.landingPageContainer}>
