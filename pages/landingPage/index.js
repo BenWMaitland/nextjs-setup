@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
+import { GlobalContext } from "../../store/globalStateProvider"; // global state
 import { makeStyles } from "@material-ui/core/styles";
-import Context from "../../store/context"; // globalState
+import { Button } from '@material-ui/core';
 import { useTranslation } from 'next-i18next' // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'  // i18n
 import { useRouter } from 'next/router'; // i18n
-import { Button } from '@material-ui/core';
 import Link from 'next/link' // nextjs
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({ // set styles through classes
     landingPageContainer: {
         backgroundColor: theme.palette.primary.main,
     },
@@ -19,14 +19,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LandingPage() {
     const classes = useStyles();
-    const { globalState, globalDispatch } = useContext(Context);
+    const { exampleDispatch, exampleState, authState } = useContext(GlobalContext);
 
     const router = useRouter();
     const { locale } = router;
     const { t } = useTranslation('landingpage');
 
     useEffect(() => {
-        globalDispatch({ type: "SET_DISPLAY_TEXT", payload: "Updated Value" });
+        exampleDispatch({ type: "SET_DISPLAY_TEXT", payload: "Updated Value" }); // dispatcher for updating global state
     }, [])
 
     return (
@@ -35,7 +35,10 @@ export default function LandingPage() {
                 {t('header')} {/* inserts translation for text with this key */}
             </h1>
             <p>
-                {globalState.displayText}
+                {exampleState.displayText} {/* accessor for viewing global state variable */}
+            </p>
+            <p>
+
             </p>
             <Link
                 href={{ pathname: router.pathname }}
